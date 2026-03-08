@@ -8,7 +8,7 @@ Ten projekt został zaplanowany z myślą o usługach PaaS (Platform as a Servic
 | Warstwa | Komponent Lokalny | Usługa Azure |
 | :--- | :--- | :--- |
 | **Presentation** | React 19 (Vite) | Azure Static Web Apps |
-| **Application** | API (.NET 9 / Node 24) | Azure App Service |
+| **Application** | API (.NET 10 / Node 24) | Azure App Service |
 | **Data** | SQL Server (Dev) | Azure SQL Database (Serverless) |
  
 ## 🏗 Status Projektu i Dokumentacja
@@ -16,3 +16,4 @@ Ten projekt został zaplanowany z myślą o usługach PaaS (Platform as a Servic
 * [x] **Artefakt 2:** Środowisko wielokontenerowe uruchomione lokalnie (Docker Compose).
  
 * [x] **Artefakt 3:** Działająca warstwa prenzentacji
+* [x] **Artefakt 3:** ziałająca warstwa logiki backendu
