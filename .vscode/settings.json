@@ -1,6 +1,6 @@
 {
     "appService.preDeployTask": "publish-release",
-    "appService.deploySubpath": "backend/bin/Release/net9.0/publish",
+    "appService.deploySubpath": "frontend/my-app/dist",
     "appService.zipIgnorePattern": [
         "node_modules{,/**}",
         ".vscode{,/**}"
