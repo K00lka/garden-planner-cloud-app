@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
 
+  # Warstwa Prezentacji (React - Static Files)
   frontend:
     build: ./frontend/my-app
     container_name: cloud-frontend
