@@ -5,8 +5,8 @@ COPY . .
 RUN dotnet restore
 RUN dotnet publish -c Release -o /app/publish
 
-# Use .NET 10.0 ASP.NET runtime for final image
-FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
+# Use .NET 9.0 ASP.NET runtime for final image
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 EXPOSE 8080
