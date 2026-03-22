@@ -1,24 +1,7 @@
 version: "3.9"
+
 services:
 
-  db:
-
-      image: mcr.microsoft.com/azure-sql-edge
-
-      container_name: cloud-db
-
-      restart: always
-
-      environment:
-
-        SA_PASSWORD: "StrongPassword123!"
-
-        ACCEPT_EULA: "Y"
-
-      ports:
-
-        - "1433:1433"
-  # Warstwa Prezentacji (React)
   frontend:
     build: ./frontend/my-app
     container_name: cloud-frontend
@@ -29,22 +12,19 @@ services:
     depends_on:
       - backend
 
-  # Warstwa Logiki (.NET 10)
   backend:
     build: ./backend
     container_name: cloud-backend
     ports:
-      - "8081:8080" # Mapujemy port 8080 kontenera (standard .NET 10) na 8081 hosta
+      - "8081:8080"
     environment:
       - ASPNETCORE_HTTP_PORTS=8080
-      # UWAGA: Hasło w tekście jawnym zostanie zabezpieczone później, ale dla celów demonstracyjnych jest tutaj umieszczone. W praktyce należy używać zmiennych środowiskowych lub menedżerów sekretów.
       - ConnectionStrings__DefaultConnection=Server=cloud-db;Database=CloudAppDb;User Id=sa;Password=StrongPassword123!;TrustServerCertificate=True
     networks:
       - cloud-network
     depends_on:
       - cloud-db
 
-  # Warstwa Danych (SQL Edge)
   cloud-db:
     image: mcr.microsoft.com/azure-sql-edge
     container_name: cloud-db
@@ -56,15 +36,11 @@ services:
     networks:
       - cloud-network
     volumes:
-
       - sql-data:/var/opt/mssql
 
-    
-
-
-  networks:
-    cloud-network:
-      driver: bridge
+networks:
+  cloud-network:
+    driver: bridge
 
 volumes:
   sql-data:
