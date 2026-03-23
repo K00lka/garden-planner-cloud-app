@@ -19,12 +19,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
             errorNumbersToAdd: null)
     ));
 // 5. Konfiguracja CORS - pozwala Reactowi(port 8080) na dostęp do API
-builder.Services.AddCors(options => {
-    options.AddDefaultPolicy(policy => {
-    policy.AllowAnyOrigin("https://cloud-task-manager-frontend-97112-edawfbbkgtenhqfv.germanywestcentral-01.azurewebsites.net")
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-});
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("https://cloud-task-manager-frontend-97112-edawfbbkgtenhqfv.germanywestcentral-01.azurewebsites.net")
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
 });
 var app = builder.Build();
 // --- AUTOMATYCZNE TWORZENIE BAZY I DANYCH ---
@@ -66,4 +68,3 @@ app.UseCors("AllowFrontend"); // Używamy skonfigurowanego CORS
 // Mapowanie kontrolerów (to sprawi, że TasksController zacznie działać)
 app.MapControllers();
 app.Run();
- 
