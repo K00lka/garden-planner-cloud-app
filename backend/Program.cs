@@ -21,7 +21,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // 5. Konfiguracja CORS - pozwala Reactowi(port 8080) na dostęp do API
 builder.Services.AddCors(options => {
     options.AddDefaultPolicy(policy => {
-    policy.AllowAnyOrigin()
+    policy.AllowAnyOrigin("https://cloud-task-manager-frontend-97112-edawfbbkgtenhqfv.germanywestcentral-01.azurewebsites.net")
                 .AllowAnyMethod()
                 .AllowAnyHeader();
 });
@@ -62,7 +62,7 @@ c.RoutePrefix = string.Empty;
 // Ważne: W Dockerze często używamy HTTP wewnątrz sieci,
 // więc wyłączamy wymuszone przekierowanie naHTTPS dla uproszczenia nauki
 // app.UseHttpsRedirection();
-app.UseCors();
+app.UseCors("AllowFrontend"); // Używamy skonfigurowanego CORS
 // Mapowanie kontrolerów (to sprawi, że TasksController zacznie działać)
 app.MapControllers();
 app.Run();
