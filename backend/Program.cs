@@ -1,7 +1,13 @@
 using CloudBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using CloudBackend.Models;
-using Azure.Identity; // Potrzebne do DefaultAzureCredential
+using Azure.Identity;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Azure.Identity;
+using Azure.Extensions.AspNetCore.Configuration.Secrets; // Potrzebne do DefaultAzureCredential
 
 var builder = WebApplicationBuilder.CreateBuilder(args);
 
