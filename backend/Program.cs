@@ -3,20 +3,20 @@ using Microsoft.EntityFrameworkCore;
 using CloudBackend.Models;
 using Azure.Identity; // Potrzebne do DefaultAzureCredential
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplicationBuilder.CreateBuilder(args);
 
-// --- NOWA SEKCJA: INTEGRACJA Z MAGAZYNEM KLUCZY (KEY VAULT) ---
-// Jeśli aplikacja działa w chmurze (Production), pobieramy hasła z sejfu
+// Only add Key Vault in Production
 if (builder.Environment.IsProduction())
 {
-    var vaultName = builder.Configuration["KeyVaultName"];
-    if (!string.IsNullOrEmpty(vaultName))
-    {
-        var keyVaultEndpoint = new Uri($"https://{vaultName}.vault.azure.net/");
-        // DefaultAzureCredential automatycznie użyje Tożsamości Zarządzanej w Azure
-        builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
-    }
+    var keyVaultUrl = new Uri("https://cloud-app-vault.vault.azure.net/");
+    var credential = new DefaultAzureCredential();
+    builder.Configuration.AddAzureKeyVault(keyVaultUrl, credential);
 }
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 
 // --- SEKCJA USŁUG (Dependency Injection) ---
 
