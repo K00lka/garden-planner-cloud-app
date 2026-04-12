@@ -1,8 +1,9 @@
 {
     "appService.preDeployTask": "publish-release",
-    "appService.deploySubpath": "frontend/my-app/dist",
+    
     "appService.zipIgnorePattern": [
         "node_modules{,/**}",
         ".vscode{,/**}"
-    ]
+    ],
+    "appService.defaultWebAppToDeploy": "None"
 }
