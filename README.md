@@ -19,4 +19,4 @@ Ten projekt został zaplanowany z myślą o usługach PaaS (Platform as a Servic
 * [x] **Artefakt 4:** Działająca warstwa logiki backendu
 * [x] **Artefakt 5:** System gotowy na chmurę
 * [x] **Artefakt 6:** Aplikacja wdrożona w Azure
-* [x] **Artefakt 7:** Aplikacja wdrożona w Azure
+* [x] **Artefakt 7:** Zabezpieczona aplikacja
