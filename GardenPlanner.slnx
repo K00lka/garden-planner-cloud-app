@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/backend/">
+    <Project Path="backend/CloudBackend.csproj" />
+  </Folder>
+  <Project Path="TaskManager.Tests/TaskManager.Tests.csproj" />
+</Solution>
